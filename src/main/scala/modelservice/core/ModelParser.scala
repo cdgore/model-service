@@ -29,7 +29,6 @@ class ModelParser(storageActors: StorageActors)
         log.info("Parsed feature manager!")
         log.info(basicFeatureManager.toString)
 
-//        val modelBroker = createModelActor(context)
         modelKey match {
           case Some(k) => storageActors.modelBroker ! StoreFeatureManagerWithKey(FeatureManagerWithKey(k, basicFeatureManager), modelStorage, client)
           case None => storageActors.modelBroker ! StoreFeatureManager(basicFeatureManager, modelStorage, client)
@@ -39,7 +38,6 @@ class ModelParser(storageActors: StorageActors)
       }
     case ParseParametersAndStore(rec: HttpEntity, modelKey: String, paramKey: Option[String], modelStorage: ActorRef, client: ActorRef) => {
       val basicModelParameters = jsonToModelParameters(parse(rec.asString).values.asInstanceOf[Map[String, Any]])
-//      val modelBroker = createModelActor(context)
       storageActors.modelBroker ! StoreModelParameters(modelKey, paramKey, basicModelParameters, modelStorage, client)
     }
     case _ => log.info("Cannot parse model request")
@@ -76,7 +74,6 @@ class ModelParser(storageActors: StorageActors)
   }
 
   def jsonToFeatureManager(rec: Map[String, Any]): BasicFeatureManager = {
-//    val featureManagerMap = simpleGetMap(rec, "feature_manager")
     val k = rec.getOrElse("k", 0).asInstanceOf[BigInt].toInt
     val label = rec.getOrElse("label", "").asInstanceOf[String]
     val singleFeatures = rec.getOrElse("single_features", List[String]()).asInstanceOf[List[String]]
