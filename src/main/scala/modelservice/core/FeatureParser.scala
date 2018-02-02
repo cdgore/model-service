@@ -15,7 +15,6 @@ import modelservice.core.prediction.{PredictionActors, PredictActor, TreePredict
 class FeatureParser(predictionActors: PredictionActors)
   extends Actor with ActorLogging with RequiresMessageQueue[BoundedMessageQueueSemantics] {
   import FeatureParser._
-//  import VectorizeFeatures._
   import TreePredictionActor._
 
   def receive = {
