@@ -10,7 +10,6 @@ import modelservice.core.{Core, FeatureParser}
 trait PredictionActors {
   val predictionActor: ActorRef
   val treePredictionNodes: ActorRef
-//  val parseActor: ActorRef
 }
 
 trait PredictionActorSet extends PredictionActors {
