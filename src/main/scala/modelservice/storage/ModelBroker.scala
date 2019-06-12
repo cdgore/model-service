@@ -31,14 +31,12 @@ class ModelBroker extends Actor with ActorLogging {
     case StoreFeatureManager(basicModel: BasicFeatureManager, modelStorage: ActorRef, client: ActorRef) => {
       val model = ModelFactory(basicModel)
       val key = model.hashCode().toString
+
       modelStorage ! Post(key, model, client)
     }
 
     case StoreFeatureManagerWithKey(FeatureManagerWithKey(key: String, basicModel: BasicFeatureManager), modelStorage: ActorRef, client: ActorRef) => {
       val model = ModelFactory(basicModel)
-
-//      Post(key: String, featureManager: HashFeatureManager, client: ActorRef)
-//      Put(modelKey: String, modelParameters: ParameterEntry, client: ActorRef)
 
       modelStorage ! Post(key, model, client)
     }
