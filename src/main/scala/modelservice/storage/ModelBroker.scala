@@ -137,14 +137,6 @@ object ModelFactory {
     }
   }
 
-//  def apply(basicModel: BasicModel) = {
-//    basicModel match {
-//      case BasicModel(basicSparseVector, basicFeatureManager) => {
-//        Model(createWeights(basicSparseVector), createFeatureManager(basicFeatureManager))
-//      }
-//    }
-//  }
-
   def apply(basicSparseVector: BasicSparseVector) = {
     createWeights(basicSparseVector)
   }
