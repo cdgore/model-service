@@ -66,7 +66,6 @@ class ParameterStorage(fManager: HashFeatureManager) extends Actor with ActorLog
 object ParameterStorage {
   final case class Model(weights: Option[SparseVector[Double]],
                          featureManager: Option[HashFeatureManager])
-//  final case class ModelEntry(key: String, value: Model)
   final case class ParameterEntry(key: Option[String], modelParameters: SparseVector[Double])
   final case class GetParams(key: String)
   final case class GetLatestParams()
@@ -84,7 +83,6 @@ sealed class ParameterVault {
   private val createdAt: DateTime = new DateTime()
   private var modifiedAt: DateTime = new DateTime()
   private val kv = ModelLRU[String, SparseVector[Double]]()
-//  private var model: Option[HashFeatureManager] = None// model feature manager
   private var lastAdded: String = _
 
   def put(key: String, value: SparseVector[Double]): Unit = synchronized {
